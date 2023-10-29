@@ -1,5 +1,6 @@
 'use client'
 import supabase from "@/lib/supabase";
+import Searchcourse from "../my-components/searchcourse";
 import React, { useEffect, useState } from "react";
 import {
   Card,
@@ -11,7 +12,6 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Star, Play } from "lucide-react";
-
 
 // Define the type for a course
 interface Course {
@@ -26,6 +26,7 @@ export const dynamic = "force-dynamic";
 
 export default function Course() {
   const [courses, setCourses] = useState<Course[]>([]);
+  const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
 
   useEffect(() => {
     async function fetchCourses() {
@@ -35,6 +36,7 @@ export default function Course() {
           throw error;
         }
         setCourses(course || []);
+        setFilteredCourses(course || []); // Initially, display all courses
       } catch (error) {
         console.error("Error fetching courses:", error);
       }
@@ -43,35 +45,44 @@ export default function Course() {
     fetchCourses();
   }, []);
 
+  const handleSearch = (searchQuery: string) => {
+    const filtered = courses.filter((course) =>
+      course.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredCourses(filtered);
+  };
+
   return (
-    <div
-      className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center"
-      style={{ gridAutoRows: "1fr", gridAutoColumns: "1fr" }}
-    >
-      {courses.map((course) => (
-        <Card
-          key={course.id}
-          className="w-full h-full flex flex-col"
-        >
-          <CardHeader>
-            <CardTitle className="w-fit">{course.title}</CardTitle>
-            <CardDescription>{course.description}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p>
-              {course.eka} - {course.ects} ECTS-point
-            </p>
-          </CardContent>
-          <CardFooter className="mt-auto">
-            <Button className="mr-2">
-              Start preparing <Play className="ml-1" />
-            </Button>
-            <Button className="bg-yellow-600">
-              Favorite <Star className="ml-1" />
-            </Button>
-          </CardFooter>
-        </Card>
-      ))}
-    </div>                                              
-  );            
+    <div>
+      <Searchcourse onSearch={handleSearch} />
+      <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center">
+
+        {filteredCourses.length > 0 ? (
+          filteredCourses.map((course) => (
+            <Card key={course.id} className="w-full h-full flex flex-col">
+              <CardHeader>
+                <CardTitle className="w-fit">{course.title}</CardTitle>
+                <CardDescription>{course.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>
+                  {course.eka} - {course.ects} ECTS-point
+                </p>
+              </CardContent>
+              <CardFooter className="mt-auto">
+                <Button className="mr-2">
+                  Start preparing <Play className="ml-1" />
+                </Button>
+                <Button className="bg-yellow-600">
+                  Favorite <Star className="ml-1" />
+                </Button>
+              </CardFooter>
+            </Card>
+          ))
+        ) : (
+          <p>No courses found.</p>
+        )}
+      </div>
+    </div>
+  );
 }

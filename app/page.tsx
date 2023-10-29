@@ -4,8 +4,8 @@ export default function Home() {
 
   
   return (
-    <div>
+    <main>
       <Course></Course>
-    </div>
+    </main>
   )
 }

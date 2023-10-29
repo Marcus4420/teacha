@@ -1,8 +1,11 @@
 
+import Course from "@/app/supabase/course";
 export default function Home() {
+
+  
   return (
-    <main>
-      <p>Hello, world!</p>
-    </main>
+    <div>
+      <Course></Course>
+    </div>
   )
 }

@@ -25,28 +25,26 @@ interface Course {
   export const dynamic = 'force-dynamic';
   
   export default function Course() {
-    const [courses, setCourses] = useState<Course[]>([]); // Provide the type annotation here
+    const [courses, setCourses] = useState<Course[]>([]);
   
     useEffect(() => {
-      // Inside the useEffect, fetch data from Supabase when the component mounts
       async function fetchCourses() {
         try {
           const { data: course, error } = await supabase.from('courses').select();
           if (error) {
             throw error;
           }
-          setCourses(course || []); // Use an empty array as the default if data is null
+          setCourses(course || []);
         } catch (error) {
           console.error('Error fetching courses:', error);
         }
       }
   
-      // Call the fetchCourses function
       fetchCourses();
-    }, []); // The empty dependency array ensures this effect runs only on mount
+    }, []);
   
     return (
-      <div className="grid gap-4 grid-cols-3 grid-rows-3">
+      <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {courses.map(course => (
           <Card key={course.id}>
             <CardHeader>

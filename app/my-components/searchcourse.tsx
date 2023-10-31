@@ -18,7 +18,7 @@ export default function Searchcourse({ onSearch }: SearchCourseProps) {
       <Input
         className="flex w-1/2"
         type="search"
-        placeholder="Course"
+        placeholder="Search a course"
         value={searchQuery}
         onChange={(e) => {
           setSearchQuery(e.target.value);

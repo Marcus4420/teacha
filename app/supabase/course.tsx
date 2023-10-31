@@ -1,6 +1,7 @@
 'use client'
 import supabase from "@/lib/supabase";
 import Searchcourse from "../my-components/searchcourse";
+import Link from 'next/link'
 import React, { useEffect, useState } from "react";
 import {
   Card,
@@ -64,14 +65,13 @@ export default function Course() {
                 <CardTitle className="w-fit">{course.title}</CardTitle>
                 <CardDescription>{course.description}</CardDescription>
               </CardHeader>
-              <CardContent>
-                <p>
-                  {course.eka} - {course.ects} ECTS-point
-                </p>
+              <CardContent className="mb-auto">
+                <p>{course.ects} ECTS <br></br>EKA: {course.eka}</p>
               </CardContent>
               <CardFooter className="mt-auto">
                 <Button className="mr-2">
-                  Start preparing <Play className="ml-1" />
+                  <Link href="/course">Start preparing</Link>
+                  
                 </Button>
                 <Button className="bg-yellow-600">
                   Favorite <Star className="ml-1" />

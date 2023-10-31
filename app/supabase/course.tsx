@@ -70,8 +70,7 @@ export default function Course() {
               </CardContent>
               <CardFooter className="mt-auto">
                 <Button className="mr-2">
-                  <Link href="/course">Start preparing</Link>
-                  
+                  <Link href={'courses/'+course.eka}>Start preparing</Link>
                 </Button>
                 <Button className="bg-yellow-600">
                   Favorite <Star className="ml-1" />

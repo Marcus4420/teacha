@@ -1,4 +1,4 @@
-# Teacha
+# Teacha 📚
 *A dynamic teaching platform, for university curriculum*
 
 Currently hosted [here](teacha.vercelapp.com) by vercel app
@@ -12,7 +12,10 @@ Currently hosted [here](teacha.vercelapp.com) by vercel app
 - Content management page
 
 
-## Tools
+
+## Tools 🛠
 This webapp is currently made with *React, TailwindCSS, Nextjs & Supabase*
 
 Some of the graphical elements are from *Shadcn UI framework* which can be found [here](https://ui.shadcn.com) 
+
+Current course materials will be inspired from Southern Danish University (SDU), where I am currently enrolled

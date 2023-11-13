@@ -16,11 +16,10 @@ import { Star, Play } from "lucide-react";
 
 // Define the type for a course
 interface Course {
-  id: number;
+  eka: string;
   title: string;
   description: string;
   ects: number;
-  eka: string;
 }
 
 export const dynamic = "force-dynamic";
@@ -60,7 +59,7 @@ export default function Course() {
 
         {filteredCourses.length > 0 ? (
           filteredCourses.map((course) => (
-            <Card key={course.id} className="w-full h-full flex flex-col">
+            <Card key={course.eka} className="w-full h-full flex flex-col">
               <CardHeader>
                 <CardTitle className="w-fit">{course.title}</CardTitle>
                 <CardDescription>{course.description}</CardDescription>

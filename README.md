@@ -1,7 +1,7 @@
 # Teacha 📚
 *A dynamic teaching platform, for university curriculum*
 
-Currently hosted [here](teacha.vercel.app) by vercel app
+Currently hosted [here](http://teacha.vercel.app) by vercel app
 
 ## Current to-do check 💡
 - Authentication
